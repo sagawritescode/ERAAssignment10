@@ -2,7 +2,7 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2 
 
 class CustomResnetTransforms:
-    def train_transforms(means, std):
+    def train_transforms(means, stds):
         return A.Compose(
             [
                 A.Normalize(mean=means, std=stds),
