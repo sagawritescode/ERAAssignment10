@@ -7,7 +7,7 @@ def get_lr(optimizer):
 
 def get_device():
     use_cuda = torch.cuda.is_available()
-    device = torch.device("cuda" if use_cuda else "cpu")
+    return torch.device("cuda" if use_cuda else "cpu")
 
 def print_summary(model, input_size):
     summary(model, input_size)
