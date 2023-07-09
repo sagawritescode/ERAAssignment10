@@ -71,7 +71,7 @@ class CustomResNet(nn.Module):
         self.convblock2 = nn.Sequential(
             nn.Conv2d(in_channels=256, out_channels=512, kernel_size=(3, 3), padding=1, bias=False),
             nn.MaxPool2d(2,2),
-            getNormalisationLayer(normalisation_method, 256, groups),
+            getNormalisationLayer(normalisation_method, 512, groups),
             nn.ReLU(),
         ) # output_size = 26
 
