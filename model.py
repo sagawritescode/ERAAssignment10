@@ -30,9 +30,9 @@ def getNormalisationLayer(normalisation_method, output_channel, groups=0):
           return nn.GroupNorm(1, output_channel)
 
 
-class Model(nn.Module):
+class CustomResNet(nn.Module):
     def __init__(self, normalisation_method, groups=0):
-        super(NormalisationModel, self).__init__()
+        super(CustomResNet, self).__init__()
         # PrepLayer
         self.prep_layer = nn.Sequential(
             nn.Conv2d(in_channels=3, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
