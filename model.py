@@ -87,7 +87,7 @@ class CustomResNet(nn.Module):
 
         self.maxPool2 = nn.MaxPool2d(4, 4) # output_size = 12
 
-        self.output_linear = nn.Linear(512, 10, bias=False)
+        self.output_linear = nn.Linear(128, 10, bias=False)
 
     def forward(self, x):
         x = self.prep_layer(x)
