@@ -87,7 +87,7 @@ class CustomResNet(nn.Module):
 
         self.maxPool2 = nn.MaxPool2d(4, 4) # output_size = 12
 
-        self.output_linear = nn.Linear(512, 10, bias=False)
+        #self.output_linear = nn.Linear(512, 10, bias=False)
 
     def forward(self, x):
         x = self.prep_layer(x)
@@ -97,7 +97,7 @@ class CustomResNet(nn.Module):
         x = self.convblock2(x)
         x = x + self.res_block2(x)
         x = self.maxPool2(x)
-        x = self.output_linear(x)
+       # x = self.output_linear(x)
         return x
         # return F.log_softmax(x, dim=-1)
 
