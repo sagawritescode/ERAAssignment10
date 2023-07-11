@@ -10,7 +10,7 @@ def get_lr(optimizer):
    for params_group in optimizer.params_groups:
       return param_group['lr']
 
-def train(model, device, train_loader, optimizer, scheduler, criterion):
+def train(model, device, train_loader, optimizer, epoch, scheduler, criterion):
   model.train()
   pbar = tqdm(train_loader)
   correct = 0
@@ -43,7 +43,7 @@ def train(model, device, train_loader, optimizer, scheduler, criterion):
     correct += pred.eq(target.view_as(pred)).sum().item()
     processed += len(data)
 
-    pbar.set_description(desc= f'Loss={loss.item()} LR={get_lr(optimizer)} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
+    pbar.set_description(desc= f'Epoch={epoch} Loss={loss.item()} LR={get_lr(optimizer)} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
     train_acc.append(100*correct/processed)
 
 def test(model, device, test_loader, criterion):
