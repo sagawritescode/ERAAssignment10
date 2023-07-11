@@ -7,7 +7,7 @@ test_acc = []
 lrs = []
 
 def get_lr(optimizer):
-   for params_group in optimizer.params_groups:
+   for param_group in optimizer.param_groups:
       return param_group['lr']
 
 def train(model, device, train_loader, optimizer, epoch, scheduler, criterion):
