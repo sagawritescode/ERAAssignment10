@@ -2,7 +2,7 @@ import torch
 from torchsummary import summary
 
 def get_lr(optimizer):
-   for params_group in optimizer.params_groups:
+   for param_group in optimizer.param_groups:
       return param_group['lr']
 
 def get_device():
