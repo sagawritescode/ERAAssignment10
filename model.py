@@ -38,7 +38,7 @@ class CustomResNet(nn.Module):
             nn.Conv2d(in_channels=3, out_channels=64, kernel_size=(3, 3), padding=1, bias=False),
             getNormalisationLayer(normalisation_method, 64, groups),
             nn.ReLU(),
-        ) # output_size = 26
+        ) # output_size = 32
 
         # Layer1 
         self.convblock1 = nn.Sequential(
@@ -46,11 +46,8 @@ class CustomResNet(nn.Module):
             nn.MaxPool2d(2,2),
             getNormalisationLayer(normalisation_method, 128, groups),
             nn.ReLU(),
-        ) # output_size = 24
-        # res block 
-        # what should be the output for 
+        ) # output_size = 16
 
-        # ResBlock todo: make sure to add as different class as specified in description
         self.res_block1 = nn.Sequential(
             nn.Conv2d(in_channels=128, out_channels=128, kernel_size=(3, 3), padding=1, bias=False),
             getNormalisationLayer(normalisation_method, 128, groups),
@@ -66,14 +63,14 @@ class CustomResNet(nn.Module):
             nn.MaxPool2d(2,2),
             getNormalisationLayer(normalisation_method, 256, groups),
             nn.ReLU(),
-        ) # output_size = 26
+        ) # output_size = 8
 
         self.convblock2 = nn.Sequential(
             nn.Conv2d(in_channels=256, out_channels=512, kernel_size=(3, 3), padding=1, bias=False),
             nn.MaxPool2d(2,2),
             getNormalisationLayer(normalisation_method, 512, groups),
             nn.ReLU(),
-        ) # output_size = 26
+        ) # output_size = 4
 
         # ResBlock2 todo: make sure to add as different class as specified in description
         self.res_block2 = nn.Sequential(
@@ -83,11 +80,9 @@ class CustomResNet(nn.Module):
             nn.Conv2d(in_channels=512, out_channels=512, kernel_size=(3, 3), padding=1, bias=False),
             getNormalisationLayer(normalisation_method, 512, groups),
             nn.ReLU(),            
-        ) # output_size = 8
+        ) # output_size = 4
 
-        self.maxPool2 = nn.MaxPool2d(4, 4) # output_size = 12
-          
-
+        self.maxPool2 = nn.MaxPool2d(4, 4) # output_size = 1
         self.output_linear = nn.Linear(512, 10, bias=False)
 
     def forward(self, x):
